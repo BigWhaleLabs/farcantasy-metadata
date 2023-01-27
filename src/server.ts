@@ -4,5 +4,6 @@ import 'source-map-support/register'
 import runApp from '@/helpers/runApp'
 
 void (async () => {
+  console.log('Done')
   await runApp()
 })()
