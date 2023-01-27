@@ -78,5 +78,5 @@ export default async function (user: User) {
       backgroundColor: '#7c65c1',
     }
   )
-  await root.render()
+  return root.render().toStream()
 }
