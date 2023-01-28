@@ -5,6 +5,22 @@ __metadata:
   version: 6
   cacheKey: 8
 
+"@big-whale-labs/farcantasy-contract@npm:^0.0.5":
+  version: 0.0.5
+  resolution: "@big-whale-labs/farcantasy-contract@npm:0.0.5"
+  dependencies:
+    "@big-whale-labs/versioned-contract": ^1.0.2
+  checksum: 1d578648348e0b6103a0d448fd0bbde76ff460ef5d1a020f80c4af86eea085fb20981dbb6cb407a994aa1c4e618c12dab826744c9b365d739c3b176d4c7e435b
+  languageName: node
+  linkType: hard
+
+"@big-whale-labs/versioned-contract@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@big-whale-labs/versioned-contract@npm:1.0.2"
+  checksum: c6d6db47827a668fdec65068d76ca242ec5d3462c929519bfb7d611b10ad6d2c2f9d45dda868aa5542b98ec71287d7e7bd2cf34cca9ae18aa4ecae6a966420cd
+  languageName: node
+  linkType: hard
+
 "@eslint/eslintrc@npm:^1.4.1":
   version: 1.4.1
   resolution: "@eslint/eslintrc@npm:1.4.1"
@@ -2311,6 +2327,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "farcantasy-metadata@workspace:."
   dependencies:
+    "@big-whale-labs/farcantasy-contract": ^0.0.5
     "@hapi/boom": ^10.0.0
     "@koa/cors": ^4.0.0
     "@standard-crypto/farcaster-js": ^5.5.1

@@ -17,5 +17,7 @@ And you should be good to go! Feel free to fork and submit pull requests.
 | -------------------- | ----------------------------------------------- |
 | `PORT`               | Port to run server on (defaults to 1337)        |
 | `FARCASTER_MNEMONIC` | Mnemonic for a Farcaster account to access data |
+| `ETH_RPC`            | Ethereum RPC endpoint                           |
+| `CONTRACT_ADDRESS`   | Address of the Farcantasy contract              |
 
 Also, please, consider looking at `.env.sample`.
