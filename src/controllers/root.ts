@@ -22,7 +22,7 @@ export default class RootController {
       return ctx.throw(notFound('User not found'))
     }
     return {
-      external_url: `https://farcantasy.xyz/${user.fid}`,
+      external_url: `https://farcantasy.xyz/#/${user.fid}`,
       image: `https://metadata.farcantasy.xyz/image/${user.fid}`,
       name: getNameFromUser(user),
       description: getBioFromUser(user),
@@ -30,6 +30,7 @@ export default class RootController {
         trait_type: t[0],
         value: t[1],
       })),
+      fid: user.fid,
     }
   }
 
@@ -49,7 +50,7 @@ export default class RootController {
       return ctx.throw(notFound('User not found'))
     }
     return {
-      external_url: `https://farcantasy.xyz/${tokenId}`,
+      external_url: `https://farcantasy.xyz/#/${tokenId}`,
       image: `https://metadata.farcantasy.xyz/image/${tokenId}`,
       name: getNameFromUser(user),
       description: getBioFromUser(user),
@@ -57,6 +58,7 @@ export default class RootController {
         trait_type: t[0],
         value: t[1],
       })),
+      fid: user.fid,
     }
   }
 
