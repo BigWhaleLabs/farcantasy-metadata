@@ -12,7 +12,6 @@ export default function (user: User) {
     attributes: getTraits(user).map((t) => ({
       trait_type: t[0],
       value: t[1],
-      season: Math.floor(user.fid / 1000 + 1),
     })),
     fid: user.fid,
   }
