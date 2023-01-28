@@ -6,11 +6,14 @@ import {
 } from 'ultimate-text-to-image'
 import { User } from '@standard-crypto/farcaster-js'
 import { cwd } from 'process'
+import { readFileSync } from 'fs'
 import { resolve } from 'path'
 import axios from 'axios'
 import getBioFromUser from '@/helpers/getBioFromUser'
 import getNameFromUser from '@/helpers/getNameFromUser'
 import getTraits from '@/helpers/getTraits'
+
+const brokenImage = readFileSync(resolve(cwd(), 'assets', 'broken.jpg'))
 
 function getUsernameText(username: string) {
   return new UltimateTextToImage(username, {
@@ -28,18 +31,27 @@ async function getAvatarImage(imageUrl?: string) {
       width: 600,
       height: 600,
     })
-  const response = await axios.get(imageUrl, { responseType: 'arraybuffer' })
-  const originalAvatarBuffer = Buffer.from(response.data, 'utf-8')
-  const convertedAvatarBuffer = await sharp(originalAvatarBuffer)
-    .resize(600, 600, { fit: 'contain' })
-    .jpeg()
-    .toBuffer()
-  const avatarImage = await getCanvasImage({ buffer: convertedAvatarBuffer })
-  return new UltimateTextToImage('', {
-    width: 600,
-    height: 600,
-    images: [{ canvasImage: avatarImage }],
-  })
+  try {
+    const response = await axios.get(imageUrl, { responseType: 'arraybuffer' })
+    const originalAvatarBuffer = Buffer.from(response.data, 'utf-8')
+    const convertedAvatarBuffer = await sharp(originalAvatarBuffer)
+      .resize(600, 600, { fit: 'contain' })
+      .jpeg()
+      .toBuffer()
+    const avatarImage = await getCanvasImage({ buffer: convertedAvatarBuffer })
+    return new UltimateTextToImage('', {
+      width: 600,
+      height: 600,
+      images: [{ canvasImage: avatarImage }],
+    })
+  } catch {
+    const avatarImage = await getCanvasImage({ buffer: brokenImage })
+    return new UltimateTextToImage('', {
+      width: 600,
+      height: 600,
+      images: [{ canvasImage: avatarImage }],
+    })
+  }
 }
 
 function getBioText(bio: string) {
