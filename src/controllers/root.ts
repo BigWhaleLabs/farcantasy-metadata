@@ -3,10 +3,8 @@ import { Controller, Ctx, Get, Params } from 'amala'
 import { notFound } from '@hapi/boom'
 import TokenId from '@/validators/TokenId'
 import Username from '@/validators/Username'
-import getBioFromUser from '@/helpers/getBioFromUser'
 import getCardImage from '@/helpers/getCardImage'
-import getNameFromUser from '@/helpers/getNameFromUser'
-import getTraits from '@/helpers/getTraits'
+import getMetadata from '@/helpers/getMetadata'
 import getUserByFID from '@/helpers/getUserByFID'
 import getUserByUsername from '@/helpers/getUserByUsername'
 
@@ -21,17 +19,7 @@ export default class RootController {
     if (!user) {
       return ctx.throw(notFound('User not found'))
     }
-    return {
-      external_url: `https://farcantasy.xyz/#/${user.fid}`,
-      image: `https://metadata.farcantasy.xyz/image/${user.fid}`,
-      name: getNameFromUser(user),
-      description: getBioFromUser(user),
-      attributes: getTraits(user).map((t) => ({
-        trait_type: t[0],
-        value: t[1],
-      })),
-      fid: user.fid,
-    }
+    return getMetadata(user)
   }
 
   @Get('/username/image/:username')
@@ -49,17 +37,7 @@ export default class RootController {
     if (!user) {
       return ctx.throw(notFound('User not found'))
     }
-    return {
-      external_url: `https://farcantasy.xyz/#/${tokenId}`,
-      image: `https://metadata.farcantasy.xyz/image/${tokenId}`,
-      name: getNameFromUser(user),
-      description: getBioFromUser(user),
-      attributes: getTraits(user).map((t) => ({
-        trait_type: t[0],
-        value: t[1],
-      })),
-      fid: user.fid,
-    }
+    return getMetadata(user)
   }
 
   @Get('/image/:tokenId')
