@@ -5,7 +5,7 @@ import users from '@/helpers/users'
 
 let checking = false
 export default async function () {
-  for (let i = 1; i <= idCap; i++) {
+  for (let i = 1; i <= idCap + 1000; i++) {
     const user = await getUserByFID(i)
     if (!user) {
       throw new Error(`User with FID ${i} not found`)
@@ -21,7 +21,7 @@ export default async function () {
     }
     checking = true
     try {
-      for (let i = 1; i <= idCap; i++) {
+      for (let i = 1; i <= idCap + 1000; i++) {
         const user = await getUserByFID(i)
         if (!user) {
           throw new Error(`User with FID ${i} not found`)
