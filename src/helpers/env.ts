@@ -11,4 +11,5 @@ export default cleanEnv(process.env, {
   FARCASTER_MNEMONIC: str(),
   ETH_RPC: str(),
   CONTRACT_ADDRESS: str(),
+  ECDSA_PRIVATE_KEY: str(),
 })
